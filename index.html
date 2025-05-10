@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bids by Dan - Buy & Sell New & Used Items</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1 class="logo">Bids by Dan</h1>
+            <p class="tagline">Buy & Sell New & Used Items</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="dropdown">
+                    <a href="#items">Items for Sale</a>
+                    <div class="dropdown-content">
+                        <a href="#electronics">Electronics</a>
+                        <a href="#furniture">Furniture</a>
+                        <a href="#appliances">Appliances</a>
+                        <a href="#vehicles">Cars & Motorbikes</a>
+                        <a href="#kitchenware">Kitchenware</a>
+                    </div>
+                </li>
+                <li><a href="#sell">Sell to Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <!-- Add your logo here -->
+                <img src="images/logo/logo.png" alt="Bids by Dan Logo" class="hero-logo">
+                <h2>Welcome to Bids by Dan</h2>
+                <p>Your premier destination for buying and selling new and used items at great prices!</p>
+                <div class="cta-buttons">
+                    <a href="#items" class="btn btn-primary">Browse Items</a>
+                    <a href="#sell" class="btn btn-secondary">Sell Your Items</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About Bids by Dan</h2>
+            <div class="about-content">
+                <p>Bids by Dan is a trusted online marketplace where you can find amazing deals on both new and pre-owned items. Our platform makes it easy for buyers to place bids on items they love and for sellers to get fair value for their items.</p>
+                <p>Founded in 2023, we've helped thousands of customers buy and sell items with complete transparency and satisfaction.</p>
+            </div>
+        </section>
+
+        <section id="items" class="section">
+            <h2>Items for Sale</h2>
+            <div class="category-nav">
+                <button class="category-btn active" data-category="all">All Items</button>
+                <button class="category-btn" data-category="electronics">Electronics</button>
+                <button class="category-btn" data-category="furniture">Furniture</button>
+                <button class="category-btn" data-category="appliances">Appliances</button>
+                <button class="category-btn" data-category="vehicles">Vehicles</button>
+                <button class="category-btn" data-category="kitchenware">Kitchenware</button>
+            </div>
+
+            <div class="items-grid">
+                <!-- Electronics -->
+                <div class="item-card" data-category="electronics">
+                    <img src="images/items/smartphone.webp" alt="Smartphone">
+                    <div class="item-info">
+                        <h3>Smartphone X Pro</h3>
+                        <p>Latest model, barely used, with original packaging and accessories.</p>
+                        <p class="price">Current Bid:Ksh 15,350</p>
+                        <button class="btn btn-bid" onclick="openBidModal('Smartphone X Pro')">Place Bid</button>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="electronics">
+                    <img src="images/items/laptop.webp" alt="Laptop">
+                    <div class="item-info">
+                        <h3>Gaming Laptop</h3>
+                        <p>High-performance gaming laptop with RTX graphics, 6 months old.</p>
+                        <p class="price">Current Bid:Ksh 22,750</p>
+                        <button class="btn btn-bid" onclick="openBidModal('Gaming Laptop')">Place Bid</button>
+                    </div>
+                </div>
+
+                <!-- Furniture -->
+                <div class="item-card" data-category="furniture">
+                    <img src="images/items/sofa.webp" alt="Leather Sofa">
+                    <div class="item-info">
+                        <h3>Leather Sofa Set</h3>
+                        <p>3-seater sofa in excellent condition, barely used.</p>
+                        <p class="price">Current Bid:Ksh 35,450</p>
+                        <button class="btn btn-bid" onclick="openBidModal('Leather Sofa Set')">Place Bid</button>
+                    </div>
+                </div>
+
+                <!-- Appliances -->
+                <div class="item-card" data-category="appliances">
+                    <img src="images/items/fridge.webp" alt="Refrigerator">
+                    <div class="item-info">
+                        <h3>Stainless Steel Fridge</h3>
+                        <p>Energy efficient, 2 years old, works perfectly.</p>
+                        <p class="price">Current Bid:Ksh 23,300</p>
+                        <button class="btn btn-bid" onclick="openBidModal('Stainless Steel Fridge')">Place Bid</button>
+                    </div>
+                </div>
+
+                <!-- Vehicles -->
+                <div class="item-card" data-category="vehicles">
+                    <img src="images/items/bike.webp" alt="Motorcycle">
+                    <div class="item-info">
+                        <h3>2018 Sport Bike</h3>
+                        <p>Low mileage, well maintained, all service records available.</p>
+                        <p class="price">Current Bid:Ksh 250,200</p>
+                        <button class="btn btn-bid" onclick="openBidModal('2018 Sport Bike')">Place Bid</button>
+                    </div>
+                </div>
+
+                <!-- Kitchenware -->
+                <div class="item-card" data-category="kitchenware">
+                    <img src="images/items/blender.webp" alt="Blender">
+                    <div class="item-info">
+                        <h3>Premium Blender Set</h3>
+                        <p>Professional grade blender with multiple attachments, new in box.</p>
+                        <p class="price">Current Bid:Ksh 2,120</p>
+                        <button class="btn btn-bid" onclick="openBidModal('Premium Blender Set')">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sell" class="section">
+            <h2>Sell to Us</h2>
+            <div class="sell-form-container">
+                <!-- Sell Form -->
+                <form id="sellForm" class="sell-form" onsubmit="sendSellEmail(event)">
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" name="itemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory">Category</label>
+                        <select id="itemCategory" name="itemCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="appliances">Appliances</option>
+                            <option value="vehicles">Cars & Motorbikes</option>
+                            <option value="kitchenware">Kitchenware</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDescription">Description</label>
+                        <textarea id="itemDescription" name="itemDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="sellPrice">Your Asking Price (KES)</label>
+                        <input type="number" id="sellPrice" name="sellPrice" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sellerName">Your Name</label>
+                        <input type="text" id="sellerName" name="sellerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sellerEmail">Your Email</label>
+                        <input type="email" id="sellerEmail" name="sellerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sellerPhone">Your Phone</label>
+                        <input type="tel" id="sellerPhone" name="sellerPhone" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Selling Request</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions? Reach out to us through any of these channels:</p>
+                    <ul class="contact-list">
+                        <li><strong>Email:</strong> danychege28@gmail.com</li>
+                        <li><strong>Phone:</strong> +254 713332171</li>
+                        <li><strong>WhatsApp:</strong> +254 713332171</li>
+                        <li><strong>Facebook:</strong> @BidsByDan</li>
+                    </ul>
+                </div>
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <form id="contactForm" onsubmit="sendContactEmail(event)">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Your Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bid Modal -->
+    <div id="bidModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Place Your Bid for <span id="modalItemName"></span></h3>
+            <p><strong>Description:</strong> <span id="modalItemDescription"></span></p>
+            <p><strong>Current Bid:</strong> <span id="modalCurrentBid"></span></p>
+            <form id="bidForm" onsubmit="sendBidEmail(event)">
+                <div class="form-group">
+                    <label for="bidderName">Your Name</label>
+                    <input type="text" id="bidderName" name="bidderName" required>
+                </div>
+                <div class="form-group">
+                    <label for="bidderPhone">Your Phone Number</label>
+                    <input type="tel" id="bidderPhone" name="bidderPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="bidAmount">Your Bid Amount (KES)</label>
+                    <input type="number" id="bidAmount" name="bidAmount" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Bid</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="success-icon">✓</div>
+            <h3>Success!</h3>
+            <p id="successMessage">Your bid has been submitted successfully.</p>
+            <button onclick="closeModal()" class="btn btn-primary">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Bids by Dan</h4>
+                <p>Your trusted marketplace for buying and selling new and used items.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#items">Items for Sale</a></li>
+                    <li><a href="#sell">Sell to Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>Email: danychege28@gmail.com</li>
+                    <li>Phone: +254 713332171</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bids by Dan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
