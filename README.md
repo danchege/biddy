@@ -1,4 +1,39 @@
-# web-development-project
+# Bids by Dan
+
+Bids by Dan is a web-based platform for buying and selling new and used items. It allows users to browse items for sale, place bids, and submit items they want to sell. The platform is designed to be user-friendly and responsive, providing a seamless experience for both buyers and sellers.
+
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [How to Use](#how-to-use)
+- [Contact Information](#contact-information)
+
+---
+
+## Features
+1. **Browse Items**: Users can view items for sale, categorized into Electronics, Furniture, Appliances, Vehicles, and Kitchenware.
+2. **Place Bids**: Users can place bids on items directly from the platform.
+3. **Sell Items**: Sellers can submit items they want to sell by filling out a form.
+4. **Responsive Design**: The platform is fully responsive and works on all devices.
+5. **Contact Form**: Users can reach out to the platform administrators via a contact form.
+
+---
+
+## Technologies Used
+- **HTML5**: For structuring the web pages.
+- **CSS3**: For styling and layout, including responsive design.
+- **JavaScript**: For interactivity and form handling.
+- **WebP Images**: For optimized image loading.
+
+---
+
+## Project Structure
+The project is organized into the following main sections:
+- **`index.html`**: The main HTML file containing the structure of the website.
+- **`styles.css`**: The main CSS file for styling the website.
+- **`script.js`**: The JavaScript file for interactivity and form handling.
+- **`/images`**: A folder containing all the images used in the website, optimized in WebP format.
 
 ---
 
