@@ -1,19 +1,19 @@
 // Category filtering
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const categoryBtns = document.querySelectorAll('.category-btn');
     const itemCards = document.querySelectorAll('.item-card');
 
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+    categoryBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
             // Remove active class from all buttons
-            categoryBtns.forEach(b => b.classList.remove('active'));
+            categoryBtns.forEach((b) => b.classList.remove('active'));
             // Add active class to clicked button
             this.classList.add('active');
 
             const category = this.dataset.category;
 
             // Filter items
-            itemCards.forEach(card => {
+            itemCards.forEach((card) => {
                 if (category === 'all' || card.dataset.category === category) {
                     card.style.display = 'block';
                 } else {
@@ -24,25 +24,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submissions
-    document.getElementById('bidForm').addEventListener('submit', function(e) {
+    document.getElementById('bidForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        submitBid();
+        sendBidEmail(e); // Correct function
     });
 
-    document.getElementById('sellForm').addEventListener('submit', function(e) {
+    document.getElementById('sellForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        submitSellRequest();
+        sendSellEmail(e); // Correct function
     });
 
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        submitContactForm();
+        sendContactEmail(e); // Correct function
     });
 });
 
 // Modal functions
-function openBidModal(itemName, itemDescription, currentBid) {
-    // Set the item details in the modal
+function openBidModal(itemName) {
+    // Find the item card with the matching name
+    const itemElement = Array.from(document.querySelectorAll('.item-card')).find((card) =>
+        card.querySelector('.item-info h3').textContent === itemName
+    );
+
+    if (!itemElement) {
+        console.error(`Item with name "${itemName}" not found.`);
+        return;
+    }
+
+    // Fetch the item details
+    const itemDescription = itemElement.querySelector('.item-info p:nth-of-type(1)')?.textContent || 'No description available.';
+    const currentBid = itemElement.querySelector('.price')?.textContent || 'No bids yet.';
+
+    // Set the modal content
     document.getElementById('modalItemName').textContent = itemName;
     document.getElementById('modalItemDescription').textContent = itemDescription;
     document.getElementById('modalCurrentBid').textContent = currentBid;
@@ -61,10 +75,10 @@ function closeModal() {
 }
 
 // Close modal when clicking outside
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     const bidModal = document.getElementById('bidModal');
     const successModal = document.getElementById('successModal');
-    
+
     if (event.target === bidModal) {
         bidModal.style.display = 'none';
     }
@@ -73,96 +87,13 @@ window.addEventListener('click', function(event) {
     }
 });
 
-// Form submission functions
-function submitBid() {
-    const itemName = document.getElementById('modalItemName').textContent;
-    const bidderName = document.getElementById('bidderName').value;
-    const bidderPhone = document.getElementById('bidderPhone').value;
-    const bidAmount = document.getElementById('bidAmount').value;
-
-    // In a real implementation, this would send to a server
-    // For this demo, we'll simulate sending an email
-    const subject = `New Bid for ${itemName}`;
-    const body = `Item: ${itemName}%0D%0A%0D%0A` +
-                 `Bidder Name: ${bidderName}%0D%0A` +
-                 `Bidder Phone: ${bidderPhone}%0D%0A` +
-                 `Bid Amount: KSh ${bidAmount}`;
-
-    // This would normally be sent to your email via a server
-    // For demo purposes, we'll just show a success message
-    showSuccess(`Your bid of KSh ${bidAmount} for ${itemName} has been submitted successfully!`);
-    closeModal();
-}
-
-function submitSellRequest() {
-    const itemName = document.getElementById('itemName').value;
-    const itemCategory = document.getElementById('itemCategory').value;
-    const itemDescription = document.getElementById('itemDescription').value;
-    const sellPrice = document.getElementById('sellPrice').value;
-    const sellerName = document.getElementById('sellerName').value;
-    const sellerEmail = document.getElementById('sellerEmail').value;
-    const sellerPhone = document.getElementById('sellerPhone').value;
-
-    // In a real implementation, this would send to a server
-    const subject = `New Sell Request: ${itemName}`;
-    const body = `Item Name: ${itemName}%0D%0A` +
-                 `Category: ${itemCategory}%0D%0A` +
-                 `Description: ${itemDescription}%0D%0A` +
-                 `Asking Price: KSh ${sellPrice}%0D%0A%0D%0A` +
-                 `Seller Info:%0D%0A` +
-                 `Name: ${sellerName}%0D%0A` +
-                 `Email: ${sellerEmail}%0D%0A` +
-                 `Phone: ${sellerPhone}`;
-
-    // This would normally be sent to your email via a server
-    // For demo purposes, we'll just show a success message
-    showSuccess(`Your sell request for ${itemName} has been submitted successfully! We'll contact you soon.`);
-}
-
-function submitContactForm() {
-    const contactName = document.getElementById('contactName').value;
-    const contactEmail = document.getElementById('contactEmail').value;
-    const contactMessage = document.getElementById('contactMessage').value;
-
-    // In a real implementation, this would send to a server
-    const subject = `New Contact Form Submission from ${contactName}`;
-    const body = `Name: ${contactName}%0D%0A` +
-                 `Email: ${contactEmail}%0D%0A%0D%0A` +
-                 `Message:%0D%0A${contactMessage}`;
-
-    // This would normally be sent to your email via a server
-    // For demo purposes, we'll just show a success message
-    showSuccess(`Thank you for your message, ${contactName}! We'll get back to you soon.`);
-}
-
-function showSuccess(message) {
-    document.getElementById('successMessage').textContent = message;
-    document.getElementById('successModal').style.display = 'block';
-}
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
+// Function to handle Bid Form email
 function sendBidEmail(event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
     const itemName = document.getElementById('modalItemName').textContent;
-    const itemDescription = document.getElementById('modalItemDescription').textContent;
-    const currentBid = document.getElementById('modalCurrentBid').textContent;
+    const itemDescription = document.getElementById('modalItemDescription').textContent || 'No description available.';
+    const currentBid = document.getElementById('modalCurrentBid').textContent || 'No bids yet.';
     const bidderName = document.getElementById('bidderName').value;
     const bidderPhone = document.getElementById('bidderPhone').value;
     const bidAmount = document.getElementById('bidAmount').value;
@@ -187,13 +118,14 @@ Phone: ${bidderPhone}`;
 
     console.log(body); // Log the decoded message for debugging
 
+    // Trigger the mailto link
     const mailtoLink = `mailto:danychege28@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    window.location.href = mailtoLink; // This will now work as it's tied to a user gesture
 }
 
 // Function to handle Sell Form email
 function sendSellEmail(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
     const itemName = document.getElementById('itemName').value;
     const itemCategory = document.getElementById('itemCategory').value;
@@ -205,29 +137,33 @@ function sendSellEmail(event) {
 
     // Construct the email subject and body
     const subject = `Selling Request: ${itemName}`;
-    const body = `Hello,%0D%0A%0D%0A` +
-                 `I would like to sell the following item:%0D%0A%0D%0A` +
-                 `Item Name: ${itemName}%0D%0A` +
-                 `Category: ${itemCategory}%0D%0A` +
-                 `Description: ${itemDescription}%0D%0A` +
-                 `Asking Price: KES ${sellPrice}%0D%0A%0D%0A` +
-                 `Seller Details:%0D%0A` +
-                 `Name: ${sellerName}%0D%0A` +
-                 `Email: ${sellerEmail}%0D%0A` +
-                 `Phone: ${sellerPhone}%0D%0A%0D%0A` +
-                 `Please let me know if you are interested.%0D%0A%0D%0A` +
-                 `Thank you.`;
+    const body = `Hello,
 
-    // Create the mailto link
+I would like to sell the following item:
+
+Item Name: ${itemName}
+Category: ${itemCategory}
+Description: ${itemDescription}
+Asking Price: KES ${sellPrice}
+
+Seller Details:
+Name: ${sellerName}
+Email: ${sellerEmail}
+Phone: ${sellerPhone}
+
+Please let me know if you are interested.
+
+Thank you.`;
+
+    console.log(body); // Log the decoded message for debugging
+
     const mailtoLink = `mailto:danychege28@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // Open the user's email client
     window.location.href = mailtoLink;
 }
 
 // Function to handle Contact Form email
 function sendContactEmail(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
     const contactName = document.getElementById('contactName').value;
     const contactEmail = document.getElementById('contactEmail').value;
@@ -235,16 +171,43 @@ function sendContactEmail(event) {
 
     // Construct the email subject and body
     const subject = `Contact Message from ${contactName}`;
-    const body = `Hello,%0D%0A%0D%0A` +
-                 `You have received a new message:%0D%0A%0D%0A` +
-                 `Name: ${contactName}%0D%0A` +
-                 `Email: ${contactEmail}%0D%0A%0D%0A` +
-                 `Message:%0D%0A${contactMessage}%0D%0A%0D%0A` +
-                 `Thank you.`;
+    const body = `Hello,
 
-    // Create the mailto link
+You have received a new message:
+
+Name: ${contactName}
+Email: ${contactEmail}
+
+Message:
+${contactMessage}
+
+Thank you.`;
+
+    console.log(body); // Log the decoded message for debugging
+
     const mailtoLink = `mailto:danychege28@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // Open the user's email client
     window.location.href = mailtoLink;
 }
+
+function showSuccess(message) {
+    document.getElementById('successMessage').textContent = message;
+    document.getElementById('successModal').style.display = 'block';
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || !document.querySelector(targetId)) return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+            });
+        }
+    });
+});
+
