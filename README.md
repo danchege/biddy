@@ -1,6 +1,6 @@
-# Bids by Dan
+# Biddy
 
-Bids by Dan is a web-based platform for buying and selling new and used items. It allows users to browse items for sale, place bids, and submit items they want to sell. The platform is designed to be user-friendly and responsive, providing a seamless experience for both buyers and sellers.
+Biddy is a web-based platform for buying and selling new and used items. It allows users to browse items for sale, place bids, and submit items they want to sell. The platform is designed to be user-friendly and responsive, providing a seamless experience for both buyers and sellers.
 
 ## Table of Contents
 - [Features](#features)
@@ -92,7 +92,7 @@ For any inquiries, you can reach us through the following channels:
 - **Email**: danychege28@gmail.com
 - **Phone**: +254 713332171
 - **WhatsApp**: +254 713332171
-- **Facebook**: @BidsByDan
+- **Facebook**: @Biddy
 
 ---
 
