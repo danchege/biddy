@@ -169,21 +169,25 @@ function sendBidEmail(event) {
 
     // Construct the email subject and body
     const subject = `Bid for ${itemName}`;
-    const body = `Hello,%0D%0A%0D%0A` +
-                 `I would like to place a bid for the following item:%0D%0A%0D%0A` +
-                 `Item Name: ${itemName}%0D%0A` +
-                 `Description: ${itemDescription}%0D%0A` +
-                 `Current Bid: ${currentBid}%0D%0A` +
-                 `My Bid: KES ${bidAmount}%0D%0A%0D%0A` +
-                 `Please let me know if my bid is accepted.%0D%0A%0D%0A` +
-                 `Thank you.%0D%0A%0D%0A` +
-                 `Name: ${bidderName}%0D%0A` +
-                 `Phone: ${bidderPhone}`;
+    const body = `Hello,
 
-    // Create the mailto link
+I would like to place a bid for the following item:
+
+Item Name: ${itemName}
+Description: ${itemDescription}
+Current Bid: ${currentBid}
+My Bid: KES ${bidAmount}
+
+Please let me know if my bid is accepted.
+
+Thank you.
+
+Name: ${bidderName}
+Phone: ${bidderPhone}`;
+
+    console.log(body); // Log the decoded message for debugging
+
     const mailtoLink = `mailto:danychege28@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // Open the user's email client
     window.location.href = mailtoLink;
 }
 
