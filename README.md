@@ -1,4 +1,5 @@
 # Biddy
+live demo:https://danchege.github.io/biddy/
 
 Biddy is a web-based platform for buying and selling new and used items. It allows users to browse items for sale, place bids, and submit items they want to sell. The platform is designed to be user-friendly and responsive, providing a seamless experience for both buyers and sellers.
 
