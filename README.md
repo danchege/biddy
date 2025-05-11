@@ -68,7 +68,10 @@ The "Sell to Us" form is located in the `#sell` section of the `index.html` file
 - **Seller Email**: Email input for the seller's email address.
 - **Seller Phone**: Phone input for the seller's contact number.
 
-The form uses the `onsubmit` attribute to call the `sendSellEmail(event)` function in `script.js`, which handles the submission process.
+
+![sell_form_email](images/form%20emails/sell%20form%20email%20example.jpg)
+
+The form uses the `onsubmit` attribute to call the `sendSellEmail(event)` function in `script.js`, which handles the submission process and the email sent to seller as shown.
 
 ### 2. **Bid Form**
 The bid form is part of the modal that appears when a user clicks "Place Bid" on an item. It includes the following fields:
@@ -76,7 +79,9 @@ The bid form is part of the modal that appears when a user clicks "Place Bid" on
 - **Your Phone Number**: Phone input for the bidder's contact number.
 - **Your Bid Amount**: Number input for the bid amount.
 
-The form uses the `onsubmit` attribute to call the `sendBidEmail(event)` function in `script.js`, which processes the bid submission.
+![bid_form_email](images/form%20emails/bid%20email%20example.jpg)
+
+The form uses the `onsubmit` attribute to call the `sendBidEmail(event)` function in `script.js`, which processes the bid submission and the email is also sent to sellers inbox as shown above.
 
 ### 3. **Contact Form**
 The contact form is located in the `#contact` section of the `index.html` file. It includes the following fields:
@@ -84,7 +89,9 @@ The contact form is located in the `#contact` section of the `index.html` file. 
 - **Your Email**: Email input for the user's email address.
 - **Message**: Textarea for the user's message.
 
-The form uses the `onsubmit` attribute to call the `sendContactEmail(event)` function in `script.js`, which handles the message submission.
+![contact_form](images/form%20emails/contact%20form%20email%20example.jpg)
+
+The form uses the `onsubmit` attribute to call the `sendContactEmail(event)` function in `script.js`, which handles the message submission and an email is sent to the seller.
 
 ---
 
@@ -99,3 +106,6 @@ For any inquiries, you can reach us through the following channels:
 
 ## License
 This project is for demonstration purposes and is not intended for commercial use.
+
+## Future improvements
+- Add backend to handle large-scale funtions and money transactions 
